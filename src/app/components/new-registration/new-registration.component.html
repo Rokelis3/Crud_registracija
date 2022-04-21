@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header">Registracija į vasaros gamtininkų stovyklą</div>
+    <div class="card-body">
+
+        <form action="" (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="mb-3">
+                <label for="" class="form-label">Vaiko vardas</label>
+                <input type="text" id="" class="form-control" ngModel name="name" placeholder="Petriukas" required minlength="3"  maxlength="15">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Vaiko pavardė</label>
+                <input type="text"  id="" class="form-control" placeholder="Skrabalavičius" ngModel name="sirname" required minlength="3"  maxlength="15">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Gimimo metai</label>
+                <input type="text"  id="" class="form-control" placeholder="2007-12-11" ngModel name="year" required>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Elektroninis paštas</label>
+                <input type="text"  id="" class="form-control" ngModel name="email" placeholder="Petriukas@gmail.com" required email #mail="ngModel">
+                <span class="help-block" *ngIf="!mail.valid && mail.touched">Netinkamas elektroninis paštas</span>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-check-label me-1">Vyras</label>
+                <input type="radio"  value="man" id="man" name="radio">
+                <label for="" class="form-check-label m-1">Moteris</label>
+                <input type="radio"  value="woman" id="woman" name="radio">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Telefonas</label>
+                <input type="text" id="" class="form-control" placeholder="861548554" ngModel name="phone" required minlength="10"  maxlength="12">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Klasė</label>
+                <input type="number" id="" class="form-control" placeholder="8" ngModel name="class" required min="5"  max="12" #class="ngModel">
+                <span class="help-block" *ngIf="!class.valid && class.touched">Vasaros stovykloje gali dalyvauti vaikai esantys 5-12 klasėse.</span>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!f.valid">Registruoti</button>
+        </form>
+    </div>
+</div>
