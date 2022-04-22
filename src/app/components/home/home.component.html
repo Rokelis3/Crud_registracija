@@ -25,7 +25,9 @@
                     <td>{{ (registration.radio=="1"?"Vyras":"Moteris")}}</td>
                     <td>{{ registration.phone}}</td>
                     <td>{{ registration.klass}}</td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteRegistration(registration.id)">Ištrinti</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
