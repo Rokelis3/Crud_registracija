@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
+import { AbstractControl, FormControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
 
 @Directive({
   selector: '[AgeValidator]',
@@ -14,7 +14,7 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
 export class AgeValidatorDirective implements Validator {
 
   constructor() { }
-  validate(control: AbstractControl): ValidationErrors | null {
+  validate(control: FormControl): ValidationErrors | null {
     let year : number=control.value;
 
     let age =(new Date().getFullYear()-year);
