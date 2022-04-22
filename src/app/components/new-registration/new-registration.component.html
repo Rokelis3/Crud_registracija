@@ -13,7 +13,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Gimimo metai</label>
-                <input type="text"  id="" class="form-control" placeholder="2007-12-11" ngModel name="year" required>
+                <input type="number"  id="" class="form-control" placeholder="2007" ngModel name="year" required AgeValidator>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Elektroninis paštas</label>
@@ -32,7 +32,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Klasė</label>
-                <input type="number" id="" class="form-control" placeholder="8" ngModel name="class" required min="5"  max="12" #class="ngModel">
+                <input type="number" id="" class="form-control" placeholder="8" ngModel name="klass" required min="5"  max="12" #class="ngModel">
                 <span class="help-block" *ngIf="!class.valid && class.touched">Vasaros stovykloje gali dalyvauti vaikai esantys 5-12 klasėse.</span>
             </div>
             <button type="submit" class="btn btn-success" [disabled]="!f.valid">Registruoti</button>
