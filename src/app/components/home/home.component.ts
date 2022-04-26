@@ -28,6 +28,5 @@ export class HomeComponent implements OnInit {
     this.registrationService.deleteRegistration(id).subscribe((response)=>{
       this.loadData();
     })
-
   }
 }

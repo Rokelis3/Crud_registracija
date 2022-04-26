@@ -1,0 +1,44 @@
+<p></p>
+<div class="card">
+    <div class="card-header"><b>{{registration.id}}</b>Informacijos redagavimas</div>
+    <div class="card-body">
+        <div *ngIf="isData && !isError" >
+        <form action="" (ngSubmit)="onSubmit()" #f="ngForm">
+            <div class="mb-3">
+                <label for="" class="form-label">Vaiko vardas</label>
+                <input type="text" id="" class="form-control" ngModel name="name" placeholder="Petriukas" required minlength="3"  maxlength="15" [(ngModel)]="registration.name">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Vaiko pavardė</label>
+                <input type="text"  id="" class="form-control" placeholder="Skrabalavičius" ngModel name="sirname" required minlength="3"  maxlength="15" [(ngModel)]="registration.sirname">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Gimimo metai</label>
+                <input type="number"  id="" class="form-control" placeholder="2007" ngModel name="year" required AgeValidator [(ngModel)]="registration.year">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Elektroninis paštas</label>
+                <input type="text"  id="" class="form-control" ngModel name="email" placeholder="Petriukas@gmail.com" required email #mail="ngModel" [(ngModel)]="registration.email">
+                <span class="help-block" *ngIf="!mail.valid && mail.touched">Netinkamas elektroninis paštas</span>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-check-label me-1">Vyras</label>
+                <input type="radio"  value="1" id="man" ngModel name="radio" [(ngModel)]="registration.radio">
+                <label for="" class="form-check-label m-1">Moteris</label>
+                <input type="radio"  value="2" id="woman" ngModel name="radio" [(ngModel)]="registration.radio">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Telefonas</label>
+                <input type="text" id="" class="form-control" placeholder="+37061548554" ngModel name="phone" required minlength="10"  maxlength="12" [(ngModel)]="registration.phone">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Klasė</label>
+                <input type="number" id="" class="form-control" placeholder="8" ngModel name="klass" required min="5"  max="12" #class="ngModel" [(ngModel)]="registration.klass">
+                <span class="help-block" *ngIf="!class.valid && class.touched">Vasaros stovykloje gali dalyvauti vaikai esantys 5-12 klasėse.</span>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!f.valid">Išsaugoti</button>
+            <button type="button" class="btn btn-danger ms-3" (click)="onEdit()">Atšaukti</button>
+        </form>
+    </div>
+</div>
+</div>

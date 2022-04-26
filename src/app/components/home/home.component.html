@@ -26,6 +26,7 @@
                     <td>{{ registration.phone}}</td>
                     <td>{{ registration.klass}}</td>
                     <td>
+                        <a class="btn btn-success" [routerLink]="['/update',registration.id]" >Redaguoti</a>&nbsp;
                         <button class="btn btn-danger" (click)="deleteRegistration(registration.id)">Ištrinti</button>
                     </td>
                 </tr>
