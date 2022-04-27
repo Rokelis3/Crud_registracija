@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class RegistrationService {
 
-  private readonly url:String="https://automobiliuregistracija-1171a-default-rtdb.europe-west1.firebasedatabase.app/"; 
+  private readonly url:String="https://vaikuregistracijastovyklai-default-rtdb.europe-west1.firebasedatabase.app/"; 
 
   constructor(private http:HttpClient) { 
 
