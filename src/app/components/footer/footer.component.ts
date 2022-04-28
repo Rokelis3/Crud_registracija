@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthResponseData } from 'src/app/models/authResponseData';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css']
 })
-export class NavigationComponent implements OnInit {
+export class FooterComponent implements OnInit {
 
-  public isLoggedin=false;
+  public isLoggedin=true;
   public user?:AuthResponseData;
 
-  constructor(private auth:AuthService, private router:Router) { }
+  constructor(private auth:AuthService) { }
 
   ngOnInit(): void {
     this.isLoggedin=this.auth.isLoggedIn;
@@ -24,11 +23,7 @@ export class NavigationComponent implements OnInit {
     });
   }
 
-  public onLogout(){
-    this.auth.logout();
-    this.router.navigate(['/login']);
-
-  }
+ 
 
 
 }
