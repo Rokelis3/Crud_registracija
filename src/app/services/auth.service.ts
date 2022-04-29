@@ -23,9 +23,22 @@ export class AuthService {
     }).pipe(  tap(  (response)=>{
       this.isLoggedIn=true;
       this.user=response;
+      this.user.expires=new Date().getTime()+ +response.expiresIn*1000;
       this.userUpdated.emit();
+      localStorage.setItem('user', JSON.stringify(this.user));
     }));
+  }
 
+  public autoLogin(){
+    const data=localStorage.getItem('user');
+    if (data!=null){
+      
+      const user:AuthResponseData=JSON.parse(data);
+      if (user.expires!=null && user.expires>new Date().getTime()){
+        this.user=new AuthResponseData(user.kind,user.idToken,user.email,user.refreshToken,user.expiresIn,user.localId);
+        this.isLoggedIn=true;
+      }
+    }
   }
 
   public register(email:String,password:String){
@@ -47,6 +60,7 @@ export class AuthService {
   public logout(){
     this.isLoggedIn=false;
     this.user=undefined;
+    localStorage.removeItem('user')
     this.userUpdated.emit();
   }
 
