@@ -11,9 +11,7 @@ export class RegistrationService {
   private readonly url:String="https://vaikuregistracijastovyklai-default-rtdb.europe-west1.firebasedatabase.app/"; 
 
   constructor(private http:HttpClient) { 
-
   }
-
 
   public addRegistration(registration:Registration){
     return this.http.post<{name:string}>(this.url+"/registrations.json",registration);
