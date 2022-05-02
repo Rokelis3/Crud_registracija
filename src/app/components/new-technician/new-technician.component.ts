@@ -13,7 +13,7 @@ export class NewTechnicianComponent implements OnInit {
     this.technicianForm=new FormGroup({
       'name':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
       'surname':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
-      'email':new FormControl(null, [Validators.required, Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+      'email':new FormControl(null, [Validators.required, Validators.email]),
       'klass':new FormControl(null, [Validators.required, Validators.min(6), Validators.max(12)])
     });
   }
