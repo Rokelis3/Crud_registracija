@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header">Pridėti naują techninės apžiūros darbuotoją</div>
+    <div class="card-header">Pridėti naują vaiką į technikų būrelį</div>
     <div class="card-body">
         <form [formGroup]="technicianForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
@@ -22,6 +22,16 @@
                 <input type="number" class="form-control" formControlName="klass">
                 <span class="help-block" *ngIf="!technicianForm.get('klass')?.valid && technicianForm.get('klass')?.touched">Dalyvauti gali tik 6-12 klasėse esantys vaikai</span>
             </div>
+            <hr>
+                <h4>Alergijų sąrašas</h4>
+                <button type="button" class="btn btn-success" (click)="addAlergie()" >Pridėti vaiko alergiją</button>
+                <div formArrayName="alergie">
+                    <div class="mb-3 mt-3" *ngFor="let alergie of alergies; let i = index">
+                     <input type="text" class="form-control" [formControlName]="i">
+                    </div>
+                    <button *ngIf="technicianForm.get('alergie')?.valid!=null" type="button" class="btn btn-danger mt-3" (click)="deleteAlergie()">Pašalinti alergiją</button>
+                </div>
+            <hr>
             <button type="submit" [disabled]="!technicianForm.valid" class="btn btn-success" >Pridėti</button>
         </form>
     </div>
