@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-new-technician',
@@ -14,7 +15,8 @@ export class NewTechnicianComponent implements OnInit {
       'name':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
       'surname':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
       'email':new FormControl(null, [Validators.required, Validators.email]),
-      'klass':new FormControl(null, [Validators.required, Validators.min(6), Validators.max(12)])
+      'klass':new FormControl(null, [Validators.required, Validators.min(6), Validators.max(12)]),
+      'alergie':new FormArray([])
     });
   }
 
@@ -26,4 +28,17 @@ export class NewTechnicianComponent implements OnInit {
     this.technicianForm.reset();
   }
 
+  addAlergie(){
+    const input=new FormControl(null, Validators.required);
+    (<FormArray>this.technicianForm.get('alergie')).push(input);
+
+  }
+
+  get alergies(){
+    return (<FormArray>this.technicianForm.get('alergie')).controls;
+  }
+
+  deleteAlergie(){
+   (<FormArray>this.technicianForm.get('alergie')).removeAt(-1);
+  }
 }
