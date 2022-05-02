@@ -15,7 +15,10 @@
           <li class="nav-item">
               <a class="nav-link" *ngIf="isLoggedin" routerLink="/changePassword">Keisti slaptažodį</a>
             </li>
-         
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/newTechnician">Pridėti naują gamtininkų būrelio dalyvį</a>
+            </li>
+        
         </ul>
         <div *ngIf="isLoggedin" class="d-flex me-2" >Jūs esate prisijungęs: <b>{{ user?.email }}</b> </div>
         <a  *ngIf="!isLoggedin" class="btn btn-primary d-flex" routerLink="/login">Prisijungti</a>

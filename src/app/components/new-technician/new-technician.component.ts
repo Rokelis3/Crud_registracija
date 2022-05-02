@@ -11,9 +11,10 @@ export class NewTechnicianComponent implements OnInit {
   
   constructor() { 
     this.technicianForm=new FormGroup({
-      'name':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
-      'surname':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
-      'level':new FormControl(null, [Validators.required, this.checkLevel])
+      'name':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
+      'surname':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
+      'email':new FormControl(null, [Validators.required, Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+      'klass':new FormControl(null, [Validators.required, Validators.min(6), Validators.max(12)])
     });
   }
 
@@ -23,14 +24,6 @@ export class NewTechnicianComponent implements OnInit {
   onSubmit(){
     console.log(this.technicianForm.value);
     this.technicianForm.reset();
-  }
-
-  checkLevel(control:FormControl): {[s:string]:boolean}|null {
-    if (control.value=='1' || control.value=='3' || control.value=='5'){
-      return null;
-    }else{
-      return {'levelIncorect':true}
-    }
   }
 
 }
