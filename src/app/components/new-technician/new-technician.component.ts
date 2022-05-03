@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NewTechnicianService } from 'src/app/services/new-technician.service';
 
 
 @Component({
@@ -10,13 +11,14 @@ import {FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 export class NewTechnicianComponent implements OnInit {
   public technicianForm:FormGroup;
   
-  constructor() { 
+  constructor(private newTechniacianForm:NewTechnicianService) { 
     this.technicianForm=new FormGroup({
       'name':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
       'surname':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
       'email':new FormControl(null, [Validators.required, Validators.email]),
       'klass':new FormControl(null, [Validators.required, Validators.min(6), Validators.max(12)]),
-      'alergie':new FormArray([])
+      'alergie':new FormArray([]),
+      'club':new FormArray([])
     });
   }
 
@@ -25,6 +27,7 @@ export class NewTechnicianComponent implements OnInit {
 
   onSubmit(){
     console.log(this.technicianForm.value);
+    this.newTechniacianForm.addRegistration(this.technicianForm.value).subscribe();
     this.technicianForm.reset();
   }
 
@@ -38,7 +41,27 @@ export class NewTechnicianComponent implements OnInit {
     return (<FormArray>this.technicianForm.get('alergie')).controls;
   }
 
+  addClub(){
+    const club=new FormGroup({
+      year:new FormControl(null, Validators.required),
+      clubName:new FormControl(null, Validators.required),
+      typeOfClub:new FormControl(null, Validators.required)
+    })
+    return (<FormArray>this.technicianForm.get('club')).push(club);
+  }
+
+  get clubs(){
+    return (<FormArray>this.technicianForm.get('club')).controls;
+  }
+
   deleteAlergie(){
    (<FormArray>this.technicianForm.get('alergie')).removeAt(-1);
   }
+
+  toFormGroup(el:AbstractControl): FormGroup{
+    return <FormGroup>el;
+  }
+  
+
+  
 }

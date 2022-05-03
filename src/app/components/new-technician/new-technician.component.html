@@ -32,7 +32,31 @@
                     <button *ngIf="technicianForm.get('alergie')?.valid!=null" type="button" class="btn btn-danger mt-3" (click)="deleteAlergie()">Pašalinti alergiją</button>
                 </div>
             <hr>
-            <button type="submit" [disabled]="!technicianForm.valid" class="btn btn-success" >Pridėti</button>
+            <h4>Lankyti būreliai</h4>
+            <button type="button" class="btn btn-success" (click)="addClub()">Pridėti anksčiau lankytą būrelį</button>
+            <div formArrayName="club">
+                <div *ngFor="let club of clubs; let i=index">
+                    <div class="row mt-3 mb-3" [formGroup]="toFormGroup(club)">
+                        <div class="col-md-4">
+                            <label for="" class="form-label">Metai</label>
+                            <input type="text" class="form-control" formControlName="year">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="" class="form-label">Pavadinimas</label>
+                            <input type="text" class="form-control" formControlName="clubName">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="" class="form-label">Būrelio tipas</label>
+                            <select name="cars" id="cars" class="form-control" formControlName="typeOfClub">
+                                <option value="volvo">Sporto</option>
+                                <option value="saab">Meno</option>
+                                <option value="opel">Mokslo</option>
+                              </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" [disabled]="!technicianForm.valid" class="btn btn-success lastButton" >Pridėti</button>
         </form>
     </div>
     
